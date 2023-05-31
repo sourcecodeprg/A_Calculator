@@ -10,32 +10,12 @@
 #include <FL/Fl_Input.H>
 #include <FL/Fl_Button.H>
 #include <FL/Fl_Value_Output.H>
+#include "calculator.hpp"
 
 
-class calculator{
-    public :
-    float add (float num1 ,float num2);
-    float sub (float num1, float num2);
-    float mul (float num1, float num2);
-    float div (float num1 , float num2);
-};
 
 
-float calculator::add(float num1 , float num2){
-    return num1+num2;
-}
 
-float calculator::sub(float num1, float num2){
-    return num1-num2;
-}
-
-float calculator::mul(float num1,float num2){
-    return num1*num2;
-}
-
-float calculator::div(float num1, float num2){
-    return num1/num2;
-}
 
 
 
