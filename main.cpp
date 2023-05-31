@@ -14,14 +14,6 @@
 
 
 
-
-
-
-
-
-
-
-
 //here intializing needed gui components ( needed gui classes and etc....) as gloabal
 Fl_Window *window = new Fl_Window(600, 600);
 
@@ -38,8 +30,18 @@ Fl_Button *DivButton = new Fl_Button(230, 100, 70, 25, "Div");
 //below answerOutBox for to place or show the result
 Fl_Value_Output *answerOutBox = new Fl_Value_Output(320, 55,100,25);
 
+Fl_Color originalColor;
+void setBtnOriginalColor(){
+    AddButton->color(originalColor);
+    AddButton->redraw();
+    SubButton->color(originalColor);
+    SubButton->redraw();
+    MulButton->color(originalColor);
+    MulButton->redraw();
+    DivButton->color(originalColor);
+    DivButton->redraw();
 
-
+}
 
 // object for calculator class
 calculator cal;
@@ -47,6 +49,7 @@ calculator cal;
 // creating input and result variables are global
 
 float num1 , num2 , answer=0;
+
 
 void readValues(){
     //atof function is convert string to floating point number
@@ -57,31 +60,44 @@ void readValues(){
 void outResult(){
     answerOutBox->value(answer); //this code place sum in answerOutBox
     Fl::warning("The answer is %f", answer); //this code showing the sum in terminal
+
     return;
 }
 
 
 // add_numbers funciton 
 void add_numbers(Fl_Widget *w, void *data){ 
+    setBtnOriginalColor();
+    AddButton->color(FL_RED);
+
     readValues();
     answer = cal.add(num1,num2);
     outResult();
+
+
     return;
 }
 
 void sub_numbers(Fl_Widget *w, void *data){ 
+    
+    setBtnOriginalColor();
+    SubButton->color(FL_RED);
     readValues();
     answer = cal.sub(num1,num2);
     outResult();
     return;
 }
 void mul_numbers(Fl_Widget *w, void *data){ 
+    setBtnOriginalColor();
+    MulButton->color(FL_RED);
     readValues();
     answer = cal.mul(num1,num2);
     outResult();
     return;
 }
 void div_numbers(Fl_Widget *w, void *data){ 
+    setBtnOriginalColor();
+    DivButton->color(FL_RED);
     readValues();
     answer = cal.div(num1,num2);
     outResult();
@@ -89,7 +105,9 @@ void div_numbers(Fl_Widget *w, void *data){
 }
 
 
+
 int main(int argc, char **argv) {
+    originalColor = AddButton->color();
 
 
     // calling function when button are clicked
